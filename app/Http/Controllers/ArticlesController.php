@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\ArticleRequest;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+
 class ArticlesController extends Controller
 {
     public function index()
@@ -35,7 +34,7 @@ class ArticlesController extends Controller
     public function store(ArticleRequest $request)
     {
 
-        Article::create($request);
+        Article::create($request->all());
 
         return redirect('articles');
     }

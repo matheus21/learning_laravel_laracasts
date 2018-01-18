@@ -8,7 +8,7 @@
     {!! Form::open(['url' => 'articles']) !!}
 
         @include('articles.form', ['submitButtonText' => 'Add Article'])
-
+    
     {!! Form::close() !!}
 
 
