@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 class ArticlesController extends Controller
 {
     public function index()
     {
-
         /**
          * Get only published articles (published_at date less or equal to current date)
          * or unpublished articles (published_at date bigger than current date)
@@ -33,8 +34,9 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request)
     {
+        $article = new Article($request->all());
 
-        Article::create($request->all());
+        Auth::user()->articles()->save($article);
 
         return redirect('articles');
     }
