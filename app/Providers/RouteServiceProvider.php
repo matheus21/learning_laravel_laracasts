@@ -24,8 +24,25 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-
         parent::boot();
+        /**
+         * Route model binding example.
+         * We no longer fetch and object by id, but get it automatically
+         * in the route
+         */
+        Route::model('article', 'App\Article');
+
+        /**
+         * If filter object is necessary
+         */
+
+//        Route::bind('article', function ($id) {
+//
+//            return \App\Article::published()->findOrFail($id);
+//
+//        });
+
+
     }
 
     /**
@@ -52,8 +69,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -66,8 +83,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 }

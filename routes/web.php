@@ -20,7 +20,6 @@
 //]);
 
 
-
 //Route::get('articles', 'ArticlesController@index');
 //Route::get('articles/create', 'ArticlesController@create');
 //Route::get('articles/{id}', 'ArticlesController@show');
@@ -33,7 +32,13 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('foo', ['middleware' => 'manager', function() {
+/**
+ * Middleware example
+ */
+Route::get('foo', [
+    'middleware' => 'manager',
+    function () {
 
-    return 'this page may only be view by managers';
-}]);
+        return 'this page may only be view by managers';
+    }
+]);
