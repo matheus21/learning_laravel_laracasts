@@ -11,17 +11,29 @@
 |
 */
 
-Route::get('about', 'PagesController@about');
+//Route::get('about', ['middleware' => 'auth', 'uses' => 'PagesController@about']);
+//Route::get('about', [
+//    'middleware' => 'auth',
+//    function () {
+//        return 'this page will only show if the user is signed in';
+//    }
+//]);
 
-//
+
+
 //Route::get('articles', 'ArticlesController@index');
 //Route::get('articles/create', 'ArticlesController@create');
 //Route::get('articles/{id}', 'ArticlesController@show');
 //Route::post('articles', 'ArticlesController@store');
 //Route::get('articles/{id}/edit', 'ArticlesController@edit');
-//
+
 
 Route::resource('articles', 'ArticlesController');
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('foo', ['middleware' => 'manager', function() {
+
+    return 'this page may only be view by managers';
+}]);
